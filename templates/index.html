@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Skill Gap Analyzer & Career Recommender</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="hero-section">
+    <div class="hero-content">
+      <h1>Unlock Your Next Career Chapter with AI</h1>
+      <p class="tagline">Bridge skill gaps, discover your ideal roles, and take control of your professional journey.</p>
+      <p class="model-info">Our intelligent AI analyzes your resume against job descriptions to pinpoint missing skills and recommend targeted learning resources. We also predict your job match probability and suggest better-suited career paths.</p>
+      <a href="#analyze-section" class="start-button">Get Started</a>
+    </div>
+  </div>
+
+  <section id="analyze-section" class="analyze-section">
+    <div class="container">
+      <h2>Analyze Your Resume & Discover Opportunities</h2>
+      <form action="/analyze" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="job">Select Job Role:</label>
+          <div class="select-wrapper">
+            <select name="job" id="job" required>
+              {% for job in jobs %}
+                <option value="{{ job.id }}">{{ job.title }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="resume">Upload Resume (PDF or TXT):</label>
+          <input type="file" name="resume" id="resume" accept=".pdf,.txt" required>
+        </div>
+        <button type="submit" class="analyze-button">Analyze My Skills</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <p>&copy; 2025 AI Skill Gap Analyzer & Career Recommender</p>
+      <p>Powered by Intelligent Algorithms</p>
+      </div>
+  </footer>
+</body>
+</html>

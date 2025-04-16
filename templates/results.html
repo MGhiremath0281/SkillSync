@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analysis Results</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body class="results-page">
+  <div class="results-container">
+    <header class="results-header">
+      <h1>Job Skill Gap Analysis</h1>
+      <p class="job-title">for <strong>{{ job_title }}</strong></p>
+    </header>
+
+    <section class="overview-section">
+      <div class="overview-card">
+        <h2 class="card-title">Skill Match Score</h2>
+        <div class="match-score-circle">
+          <span class="percentage">{{ match_percent }}%</span>
+        </div>
+        <p class="score-description">This score represents how well your current skills align with the requirements of the selected job role.</p>
+      </div>
+    </section>
+
+    <section class="details-section">
+      <div class="missing-skills-card">
+        <h2 class="card-title">Key Skill Gaps</h2>
+        {% if missing_skills %}
+          <ul class="skill-list missing">
+            {% for skill in missing_skills %}
+              <li>{{ skill }}</li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p class="no-data">Congratulations! No significant skill gaps identified for this role. <span role="img" aria-label="Thumbs Up">👍</span></p>
+        {% endif %}
+      </div>
+
+      <div class="recommendations-card">
+        <h2 class="card-title">Recommended Learning Resources</h2>
+        {% if recommended_courses %}
+          <ul class="course-list">
+            {% for course in recommended_courses %}
+              <li><a href="{{ course.url }}" target="_blank" rel="noopener noreferrer">{{ course.title }}</a></li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p class="no-data">Based on the analysis, no specific courses are recommended at this time.</p>
+        {% endif %}
+      </div>
+    </section>
+
+    <footer class="results-footer">
+      <a class="back-link" href="/">Back to Home</a>
+      <p class="footer-info">Analyze another resume to explore more opportunities.</p>
+    </footer>
+  </div>
+</body>
+</html>
